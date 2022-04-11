@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'io.deeplay.lab'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -21,4 +21,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'io.deeplay.lab.Main'
+  }
 }
