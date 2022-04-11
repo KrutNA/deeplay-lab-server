@@ -6,22 +6,13 @@ import java.sql.SQLException;
 
 public class PGConnector {
 
-    public static Connection getConnection(String DB_URL, String USER, String PASS) {
+    public static Connection getConnection(String db_url, String user, String pass) {
         System.out.println("Testing connection to PostgreSQL JDBC");
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("PostgreSQL JDBC Driver is not found. Include it in your library path ");
-            e.printStackTrace();
-            return null;
-        }
-
-        System.out.println("PostgreSQL JDBC Driver successfully connected");
         Connection connection = null;
 
         try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db_url, user, pass);
 
         } catch (SQLException e) {
             System.out.println("Connection Failed");
