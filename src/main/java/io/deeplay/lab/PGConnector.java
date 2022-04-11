@@ -1,3 +1,4 @@
+package io.deeplay.lab;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

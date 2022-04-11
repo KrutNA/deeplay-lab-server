@@ -1,3 +1,5 @@
+package io.deeplay.lab;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,7 +12,7 @@ public class DataLoader {
         //ATTENTION!!! THAT WILL DROP ALL DATA
         String sql_drop =
                         "drop table if exists Unit;" +
-                        "drop table if exists Location;" +
+                        "drop table if exists io.deeplay.lab.Location;" +
                         "drop table if exists Round;" +
                         "drop table if exists HistoricalIteration;";
         PreparedStatement statement_drop = conn.prepareStatement(sql_drop);
@@ -18,7 +20,7 @@ public class DataLoader {
 
         String sql_create =
                         "create table Unit (id bigserial primary key, name varchar(30));" +
-                        "create table Location (id serial primary key, name varchar(30));" +
+                        "create table io.deeplay.lab.Location (id serial primary key, name varchar(30));" +
                         "create table Round (id bigserial primary key, round_id uuid, location_id int, location_level int, location_size smallint, dt_insert timestamp);" +
                         "create table HistoricalIteration (id bigserial primary key, round_id bigint, unit_id bigint, unit_team smallint, profit float, position smallint, evasiveness smallint, aggression smallint, response_aggression smallint, shield smallint);";
 
@@ -114,8 +116,8 @@ public class DataLoader {
         conn.setAutoCommit(true);
 
         String sql_insert = "" +
-                "insert into Location (name) " +
-                "(select distinct lb.name from location_batch lb left join Location l on lb.name = l.name  where l.name is null);" +
+                "insert into io.deeplay.lab.Location (name) " +
+                "(select distinct lb.name from location_batch lb left join io.deeplay.lab.Location l on lb.name = l.name  where l.name is null);" +
                 "drop table if exists location_batch;";
 
         statm = conn.prepareStatement(sql_insert);
@@ -151,7 +153,7 @@ public class DataLoader {
 
         String sql_insert = "" +
                 "insert into Round (round_id, location_id, location_level, location_size, dt_insert)" +
-                "(select rb.round_id, l.id, rb.location_level, rb.location_size, rb.dt_insert as location_id from round_batch rb inner join Location l on rb.loc_name = l.name);" +
+                "(select rb.round_id, l.id, rb.location_level, rb.location_size, rb.dt_insert as location_id from round_batch rb inner join io.deeplay.lab.Location l on rb.loc_name = l.name);" +
                 "drop table if exists round_batch;";
 
         statm = conn.prepareStatement(sql_insert);
