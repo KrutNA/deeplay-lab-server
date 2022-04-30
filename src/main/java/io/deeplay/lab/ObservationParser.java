@@ -35,6 +35,7 @@ record Round(
 
 record Unit(
         String name,
+        int locatePosition,
         float sourceGoldCount
 ) {
 }
