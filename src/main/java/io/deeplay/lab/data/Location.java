@@ -8,6 +8,8 @@ public interface Location {
 
     public short getSize();
 
+    public int getUnitCount();
+
     public Map<Integer, Unit> getEnemyUnits();
 
     public Map<Integer, Unit> getOurUnits();

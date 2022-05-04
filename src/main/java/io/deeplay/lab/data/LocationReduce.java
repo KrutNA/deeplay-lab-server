@@ -18,6 +18,10 @@ public class LocationReduce implements Location {
         return size;
     }
 
+    public int getUnitCount() {
+        return ourUnits.size() + opponentUnits.size();
+    }
+
     public Map<Integer, Unit> getEnemyUnits() {
         return opponentUnits;
     }
