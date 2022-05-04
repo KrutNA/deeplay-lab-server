@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 
 public class Main {
 
@@ -21,22 +22,31 @@ public class Main {
     public static InputStream createInputStream() {
         return null;
     }
+
+    public static RoundFilter createRoundFilter() {
+        List<Predicate<Round>> filters = List.of(
+                RoundFilter::checkRequiredFields,
+                RoundFilter::checkContainsUnits,
+                RoundFilter::checkPossiblePositions,
+                RoundFilter::checkTotalSum
+        );
+        return new RoundFilter(filters);
+    }
+
     public static void main(String[] args) throws IOException {
         var parser = new HistoricalDataParser();
-        var filter = new RoundFilter();
+        var filter = createRoundFilter();
 
         try (Database db = createSqlDatabase();
-             InputStream is = createInputStream() {
+             InputStream is = createInputStream()) {
             List<Round> rounds = new ArrayList<>();
             final var count = new AtomicInteger();
             parser.process(is)
                     .takeWhile(Objects::nonNull)
                     .filter(filter)
                     .forEachOrdered((round) -> {
-                        if (count.get() < db.capacity) {
-                            count.incrementAndGet();
-                            rounds.add(round);
-                        } else {
+                        rounds.add(round);
+                        if (count.getAndIncrement() >= db.chunkSize) {
                             db.insertRounds(rounds);
                             count.set(0);
                             rounds.clear();
