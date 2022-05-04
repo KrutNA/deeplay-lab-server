@@ -26,7 +26,7 @@ public class Main {
         var filter = new RoundFilter();
 
         try (Database db = createSqlDatabase();
-             InputStream is = createInputStream() {
+             InputStream is = createInputStream()) {
             List<Round> rounds = new ArrayList<>();
             final var count = new AtomicInteger();
             parser.process(is)

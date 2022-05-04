@@ -1,6 +1,6 @@
 package io.deeplay.lab.data;
 
-public record Unit(
+public record UnitHistory(
         String name,
         float sourceGoldCount,
         float goldProfit,

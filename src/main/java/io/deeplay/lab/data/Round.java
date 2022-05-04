@@ -8,8 +8,8 @@ public record Round(
         String locationName,
         short locationLevel,
         short maxPositionsQuantity,
-        List<Unit> opponentUnits,
-        List<Unit> ourUnits
+        List<UnitHistory> opponentUnits,
+        List<UnitHistory> ourUnits
 ) {
 }
 
