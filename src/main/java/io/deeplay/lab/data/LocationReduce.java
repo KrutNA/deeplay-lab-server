@@ -38,11 +38,27 @@ public class LocationReduce implements Location {
         return new LocationReduce(id, size, opponentUnits);
     }
 
-    LocationReduce(int id, short size, Map<Integer, Unit> opponentUnits) {
+    public LocationReduce(int id, short size, Map<Integer, Unit> opponentUnits) {
         this.id = id;
         this.size = size;
         this.opponentUnits = opponentUnits;
         this.ourUnits = new HashMap<>();
     }
+
+    @Override
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Location location = (Location) obj;
+        return id == location.getId() && (size == location.getSize()) && (opponentUnits.equals(location.getEnemyUnits()))
+                &&(ourUnits.equals(location.getOurUnits()));
+    }
+
 
 }
