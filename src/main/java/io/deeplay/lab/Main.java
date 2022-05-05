@@ -24,20 +24,18 @@ public class Main {
 
         Map<Integer,Unit> opponentsUnit = new HashMap<>();
 
-        opponentsUnit.put(0,unit1);
-        opponentsUnit.put(1,unit2);
-        opponentsUnit.put(2,unit3);
+//        opponentsUnit.put(0,unit1);
+//        opponentsUnit.put(1,unit2);
+//        opponentsUnit.put(2,unit3);
 
-        LocationReduce location = new LocationReduce(1, (short) 9,opponentsUnit);
+        LocationReduce location = new LocationReduce(1, (short)6, opponentsUnit);
 
-//        System.out.println(location.getSize());
-//        System.out.println(location.getEnemyUnits().keySet());
-//        System.out.println(location.getEnemyUnits().keySet().size());
-//        System.out.println(location.getSize() - location.getEnemyUnits().keySet().size() + 1 );
 
-        List<Location> locations = Helper.converterOurCase(location);
+        List<Location> locations = Helper.converterGeneralCase(location);
 
-        System.out.println(locations.get(0).getEnemyUnits().equals(locations.get(1).getEnemyUnits()));
+        for(Location location1 : locations){
+            System.out.println(location1.getOurUnits());
+        }
 
     }
 }

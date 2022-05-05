@@ -17,7 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HelperTest {
     private LocationReduce FirstLocation;
-    private LocationReduce newLocation;
+    private LocationReduce SecondLocation;
+    private LocationReduce ThirdLocation;
+    private LocationReduce FourthLocation;
+    private LocationReduce FifthLocation;
+
     private Unit FirstOppUnit;
     private Unit SecondOppUnit;
     private Unit ThirdOppUnit;
@@ -26,7 +30,6 @@ class HelperTest {
 
     private Map<Integer, Unit> opponentsUnit;
 
-
     @BeforeEach
     public void setUp() throws Exception {
         FirstOppUnit = new Unit(1, "first");
@@ -34,17 +37,31 @@ class HelperTest {
         ThirdOppUnit = new Unit(3, "third");
 
         OurUnit = new Unit(0, null);
+
         opponentsUnit = new HashMap<>();
         opponentsUnit.put(0, FirstOppUnit);
         opponentsUnit.put(1, SecondOppUnit);
         opponentsUnit.put(2, ThirdOppUnit);
 
-        FirstLocation = new LocationReduce(1, (short) 4, opponentsUnit);
+        FirstLocation = new LocationReduce(1, (short) 6, opponentsUnit);
 
-        newLocation = FirstLocation.copy();
-        Map<Integer,Unit> OurUnits = new HashMap<>();
-        OurUnits.put(3,OurUnit);
-        newLocation.setOurUnits(OurUnits);
+        SecondLocation = FirstLocation.copy();
+        Map<Integer,Unit> OurUnitsSecondLocation = new HashMap<>();
+        OurUnitsSecondLocation.put(3,OurUnit);
+        SecondLocation.setOurUnits(OurUnitsSecondLocation);
+
+        ThirdLocation = FirstLocation.copy();
+        Map<Integer,Unit> OurUnitsThirdLocation = new HashMap<>();
+        OurUnitsThirdLocation.put(3,OurUnit);
+        OurUnitsThirdLocation.put(4,OurUnit);
+        ThirdLocation.setOurUnits(OurUnitsThirdLocation);
+
+        FourthLocation = FirstLocation.copy();
+        Map<Integer,Unit> OurUnitsFourthLocation = new HashMap<>();
+        OurUnitsFourthLocation.put(3,OurUnit);
+        OurUnitsFourthLocation.put(4,OurUnit);
+        OurUnitsFourthLocation.put(5,OurUnit);
+        FourthLocation.setOurUnits(OurUnitsFourthLocation);
     }
 
     @Test
@@ -54,22 +71,13 @@ class HelperTest {
 
         ArrayList<Location> actual = new ArrayList<>();
         actual.add(FirstLocation);
-        actual.add(newLocation);
+        actual.add(SecondLocation);
+        actual.add(ThirdLocation);
+        actual.add(FourthLocation);
 
         Assertions.assertEquals(expectedLocations, actual);
 
     }
 
-    @Test
-    public void converterOurCase() throws Exception {
 
-        List<Location> expectedLocations = Helper.converterOurCase(FirstLocation);
-
-        ArrayList<Location> actual = new ArrayList<>();
-        actual.add(FirstLocation);
-        actual.add(newLocation);
-
-        Assertions.assertEquals(expectedLocations, actual);
-
-    }
 }
