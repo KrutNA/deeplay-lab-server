@@ -38,17 +38,14 @@ public class RoundFilter implements Predicate<Round> {
 
         var uniquePositionsCount = new AtomicInteger();
         var positions = extractUnits(round)
-                .mapToInt((unit) -> {
-                    uniquePositionsCount.incrementAndGet();
-                    return unit.locatePosition();
-                })
-                .distinct();
+                .mapToInt(Unit::locatePosition)
+                .distinct()
+                .peek((pos) -> uniquePositionsCount.incrementAndGet());
 
         var unitsCount = round.ourUnits().size() + round.opponentUnits().size();
-        if (uniquePositionsCount.get() != unitsCount) return false;
-
         var maxPosQty = round.maxPositionsQuantity();
-        return positions.allMatch(pos -> pos < maxPosQty && pos >= 0);
+        return positions.allMatch(pos -> pos < maxPosQty && pos >= 0)
+                && uniquePositionsCount.get() == unitsCount;
     }
 
     public static  boolean checkTotalSum(Round round) {
