@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.logging.Level;
@@ -379,7 +378,7 @@ public class SqlDatabase implements Database {
                     .get(it.get())
                     .apply(round)
                     .size())
-            .sum();;
+            .sum();
 
     PrepareStatementProcessor process = (st) -> {
       final var i = new AtomicInteger();
