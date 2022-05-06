@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CreateJson {
 
-    public static void createJson(ArrayList<Location> locations) throws Exception {
+    public static void createJson(List<Location> locations) throws Exception {
         var mapper = new ObjectMapper();
 
         mapper.writeValue(Paths.get("Output_file.json").toFile(), locations);
