@@ -12,6 +12,7 @@ public class RoundFilter implements Predicate<Round> {
     List<Predicate<Round>> checkers;
 
     public RoundFilter(List<Predicate<Round>> checkers) {
+
         this.checkers = checkers;
     }
 
