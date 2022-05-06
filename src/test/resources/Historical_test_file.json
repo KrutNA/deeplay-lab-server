@@ -1,0 +1,72 @@
+[
+  {
+    "roundId": "aaa72c29-a55a-4a24-9a1c-94e8a9d24eda",
+    "locationName": "Factoria0",
+    "locationLevel": 10,
+    "maxPositionsQuantity": 6,
+    "opponentUnits": [
+      {
+        "name": "name1",
+        "sourceGoldCount": 132.8,
+        "goldProfit": 0.0,
+        "locatePosition": 1,
+        "evasiveness": 0,
+        "aggression": 0,
+        "responseAggression": 0,
+        "shield": 0
+      },
+      {
+        "name": "name2",
+        "sourceGoldCount": 191.6,
+        "goldProfit": 0.0,
+        "locatePosition": 2,
+        "evasiveness": 0,
+        "aggression": 0,
+        "responseAggression": 0,
+        "shield": 0
+      },
+      {
+        "name": "name3",
+        "sourceGoldCount": 100.0,
+        "goldProfit": 1.5,
+        "locatePosition": 3,
+        "evasiveness": 1,
+        "aggression": 1,
+        "responseAggression": 0,
+        "shield": 0
+      },
+      {
+        "name": "name4",
+        "sourceGoldCount": 100.0,
+        "goldProfit": 0.0,
+        "locatePosition": 4,
+        "evasiveness": 0,
+        "aggression": 0,
+        "responseAggression": 0,
+        "shield": 0
+      }
+    ],
+    "ourUnits": [
+      {
+        "name": "name5",
+        "sourceGoldCount": 100.0,
+        "goldProfit": -1.0,
+        "locatePosition": 0,
+        "evasiveness": 0,
+        "aggression": 0,
+        "responseAggression": 0,
+        "shield": 0
+      },
+      {
+        "name": "name6",
+        "sourceGoldCount": 115.5,
+        "goldProfit": -0.5,
+        "locatePosition": 5,
+        "evasiveness": 0,
+        "aggression": 0,
+        "responseAggression": 0,
+        "shield": 0
+      }
+    ]
+  }
+]
