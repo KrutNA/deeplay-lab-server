@@ -1,8 +1,6 @@
 package io.deeplay.lab.data;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LocationReduce implements Location {
     final int id;
@@ -32,6 +30,18 @@ public class LocationReduce implements Location {
 
     public Map<Integer, Unit> getOurUnits() {
         return ourUnits;
+    }
+
+
+    public List<Integer> getFreePositions() {
+        List<Integer> freePositions = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            if (!(ourUnits.containsKey(i) || opponentUnits.containsKey(i))) {
+                freePositions.add(i);
+            }
+        }
+        return freePositions;
     }
 
     public LocationReduce copy() {

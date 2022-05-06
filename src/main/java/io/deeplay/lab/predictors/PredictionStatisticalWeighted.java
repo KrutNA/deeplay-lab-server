@@ -35,4 +35,5 @@ public class PredictionStatisticalWeighted implements LocationProfitPredictor {
         return null;
 
     }
+
 }
