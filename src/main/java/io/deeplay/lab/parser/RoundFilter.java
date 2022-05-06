@@ -12,6 +12,7 @@ public class RoundFilter implements Predicate<Round> {
     List<Predicate<Round>> checkers;
 
     public RoundFilter(List<Predicate<Round>> checkers) {
+
         this.checkers = checkers;
     }
 
@@ -31,21 +32,20 @@ public class RoundFilter implements Predicate<Round> {
     }
 
     public static boolean checkContainsUnits(Round round) {
-        return round.ourUnits().isEmpty()
-                && round.opponentUnits().isEmpty();
+        return !(round.ourUnits().isEmpty()
+                && round.opponentUnits().isEmpty());
     }
 
     public static boolean checkPossiblePositions(Round round) {
         return extractUnits(round)
-                .allMatch(unit -> unit.locatePosition() <= round.maxPositionsQuantity());
+                .allMatch(unit -> unit.locatePosition() < round.maxPositionsQuantity()
+                        && unit.locatePosition()>0);
     }
 
     public static  boolean checkTotalSum(Round round) {
         final double epsilon = 1e-3;
-        return extractUnits(round)
-                .mapToDouble(Unit::goldProfit)
-                .sum()
-                < epsilon;
+        return extractUnits(round).mapToDouble(Unit::goldProfit).sum() < epsilon
+                && extractUnits(round).mapToDouble(Unit::goldProfit).sum()>-epsilon;
     }
 
     private static Stream<Unit> extractUnits(Round round) {
