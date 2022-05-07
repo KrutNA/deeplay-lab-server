@@ -20,7 +20,7 @@ public class Helper {
         }
 
         for (var comb : combinations) {
-            Location newLocation = location.copy();
+            Location newLocation = location.clone();
             Map<Integer, Unit> units = new HashMap<>();
 
             for (var pos : comb) {
@@ -61,7 +61,7 @@ public class Helper {
             }
             if (dropFlag) continue;
 
-            Location newLocation = location.copy();
+            Location newLocation = location.clone();
             Map<Integer, Unit> units = new HashMap<>();
 
             for (var pos : comb) {

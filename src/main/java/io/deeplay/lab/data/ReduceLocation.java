@@ -2,7 +2,7 @@ package io.deeplay.lab.data;
 
 import java.util.*;
 
-public class LocationReduce implements Location {
+public class ReduceLocation implements Location {
     final int id;
     final short size;
     final Map<Integer, Unit> opponentUnits;
@@ -44,11 +44,12 @@ public class LocationReduce implements Location {
         return freePositions;
     }
 
-    public LocationReduce copy() {
-        return new LocationReduce(id, size, opponentUnits);
+    @Override
+    public ReduceLocation clone() {
+        return new ReduceLocation(id, size, opponentUnits);
     }
 
-    public LocationReduce(int id, short size, Map<Integer, Unit> opponentUnits) {
+    public ReduceLocation(int id, short size, Map<Integer, Unit> opponentUnits) {
         this.id = id;
         this.size = size;
         this.opponentUnits = opponentUnits;
@@ -56,7 +57,6 @@ public class LocationReduce implements Location {
     }
 
     @Override
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;

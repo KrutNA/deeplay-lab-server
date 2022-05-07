@@ -19,6 +19,6 @@ public interface Location {
 
     public void setOurUnits(Map<Integer, Unit> ourUnits);
 
-    public Location copy();
+    public Location clone();
 
 }
