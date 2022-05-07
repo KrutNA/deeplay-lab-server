@@ -218,14 +218,6 @@ class HelperTest {
         actual.add(thirdLocation);
         actual.add(fourthLocation);
 
-        for (Location i : expectedLocations){
-            System.out.println(i.getOurUnits());
-        }
-        System.out.println("///////////////////////////////////////");
-        for (Location i : actual){
-            System.out.println(i.getOurUnits());
-        }
-
         Assertions.assertEquals(expectedLocations, actual);
     }
 
@@ -264,15 +256,6 @@ class HelperTest {
         actual.add(thirdLocation);
         actual.add(fourthLocation);
 
-
-        for (Location i : expectedLocations){
-            System.out.println(i.getOurUnits());
-        }
-        System.out.println("///////////////////////////////////////");
-        for (Location i : actual){
-            System.out.println(i.getOurUnits());
-        }
-
         Assertions.assertEquals(expectedLocations, actual);
     }
 
@@ -292,15 +275,6 @@ class HelperTest {
 
         ArrayList<Location> actual = new ArrayList<>();
         actual.add(firstLocation);
-
-        for (Location i : expectedLocations){
-            System.out.println(i.getOurUnits());
-        }
-        System.out.println("///////////////////////////////////////");
-        for (Location i : actual){
-            System.out.println(i.getOurUnits());
-        }
-
 
         Assertions.assertEquals(expectedLocations, actual);
     }
