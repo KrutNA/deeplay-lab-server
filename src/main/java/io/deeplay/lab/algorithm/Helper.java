@@ -37,41 +37,35 @@ public class Helper {
 
 
     public static List<Location> converterOurCase(Location location) {
-        // NEED TO BE TESTED
         List<Location> locationConverted = new ArrayList<>();
+        locationConverted.add(location.clone());
 
-        Set<Integer> freePositions = new HashSet<>(location.getFreePositions());
-        List<Set<Integer>> combinations = new ArrayList<>();
+        Optional<Integer> maxEnemyPosition = location.getEnemyUnits().keySet().stream().max(Integer::compare);
 
-        for (int i = 0; i < location.getFreePositions().size()+1; i++) {
-            combinations.addAll(Sets.combinations(freePositions, i));
+        Map<Integer, Unit> minimalUnits = new HashMap<>();
 
+        for (int i = 0; i < maxEnemyPosition.get(); i++) {
+            if (!location.getEnemyUnits().containsKey(i)) {
+                minimalUnits.put(i, new Unit(0, null));
+
+            }
         }
 
-        for (var comb : combinations) {
-            List<Integer> total_positions =  new ArrayList<>(location.getEnemyUnits().keySet());
-            total_positions.addAll(comb);
+        Location minLocation = location.clone();
+        minLocation.setOurUnits(minimalUnits);
+        locationConverted.add(minLocation);
 
-            boolean dropFlag = false;
-            for (var pos : total_positions) {
-                if (pos > total_positions.size() - 1) {
-                    dropFlag = true;
-                    break;
-                }
-            }
-            if (dropFlag) continue;
+        Map<Integer, Unit> ourUnits = new HashMap<>(minimalUnits);
 
+        for (int i = maxEnemyPosition.get()+1; i < location.getSize(); i++) {
+            ourUnits.put(i, new Unit(0, null));
+
+            Map<Integer, Unit> units = new HashMap<>(ourUnits);
             Location newLocation = location.clone();
-            Map<Integer, Unit> units = new HashMap<>();
-
-            for (var pos : comb) {
-                units.put(pos, new Unit(0, null));
-            }
-
             newLocation.setOurUnits(units);
+
             locationConverted.add(newLocation);
         }
-
 
         return locationConverted;
     }
