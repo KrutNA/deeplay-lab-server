@@ -1,27 +1,26 @@
-package io.deeplay.lab.predictors;
+package io.deeplay.lab.predictor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.PredictedLocation;
-import io.deeplay.lab.data.StatisticalTable;
-import io.deeplay.lab.data.StatisticalTableWeighted;
+import io.deeplay.lab.data.StatisticalWeightedTable;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class PredictionStatisticalWeighted implements LocationProfitPredictor {
+public class StatisticalWeightedPredictor implements LocationProfitPredictor {
     public final String statisticsWeightedTablePath = "src/main/resources/statistical_weighted_table.json";
-    private StatisticalTableWeighted tableWeighted;
+    private StatisticalWeightedTable tableWeighted;
 
-    PredictionStatisticalWeighted() throws IOException {
+    StatisticalWeightedPredictor() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new FileInputStream(statisticsWeightedTablePath);
         var parser = mapper.getFactory().createParser(is);
 
-        this.tableWeighted = mapper.readValue(parser, StatisticalTableWeighted.class);
+        this.tableWeighted = mapper.readValue(parser, StatisticalWeightedTable.class);
         System.out.println(tableWeighted.tableWeighted());
     }
     @Override

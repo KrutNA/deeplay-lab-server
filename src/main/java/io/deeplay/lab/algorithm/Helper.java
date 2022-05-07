@@ -1,12 +1,10 @@
-package io.deeplay.lab.algorythms;
+package io.deeplay.lab.algorithm;
 
-import com.google.common.collect.Comparators;
 import com.google.common.collect.Sets;
 import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.Unit;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Helper {
     public static List<Location> converterGeneralCase(Location location) {

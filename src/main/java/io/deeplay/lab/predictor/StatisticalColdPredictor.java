@@ -1,4 +1,4 @@
-package io.deeplay.lab.predictors;
+package io.deeplay.lab.predictor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.deeplay.lab.data.Location;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PredictorStatisticalCold implements LocationProfitPredictor {
+public class StatisticalColdPredictor implements LocationProfitPredictor {
     public final String statisticsTablePath = "src/main/resources/statistical_table.json";
     private StatisticalTable table;
 
-    PredictorStatisticalCold() throws IOException {
+    StatisticalColdPredictor() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new FileInputStream(statisticsTablePath);

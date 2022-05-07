@@ -1,4 +1,4 @@
-package io.deeplay.lab.predictors;
+package io.deeplay.lab.predictor;
 
 import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.PredictedLocation;
