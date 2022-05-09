@@ -38,7 +38,6 @@ public class Helper {
 
     public static List<Location> converterOurCase(Location location) {
         List<Location> locationConverted = new ArrayList<>();
-        locationConverted.add(location.clone());
 
         Optional<Integer> maxEnemyPosition = location.getEnemyUnits().keySet().stream().max(Integer::compare);
 
@@ -49,6 +48,9 @@ public class Helper {
                 minimalUnits.put(i, new Unit(0, null));
 
             }
+        }
+        if (!minimalUnits.isEmpty()) {
+            locationConverted.add(location.clone());
         }
 
         Location minLocation = location.clone();
