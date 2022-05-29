@@ -1,13 +1,12 @@
 package io.deeplay.lab.spreader;
 
-import io.deeplay.lab.data.SolverInput.SolverLocation;
+import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.SolverResult;
-import io.deeplay.lab.data.Unit;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class UnitsSpreaderByCount {
     Random random;
@@ -16,37 +15,32 @@ public class UnitsSpreaderByCount {
         random = new Random();
     }
 
-    private SolverResult transformInfoToResult(
-            SolverLocation location,
-            int count,
-            List<Unit> units
+    private List<SolverResult.SolverOurUnit> transformInfoToResult(
+            List<Short> positions,
+            List<String> units
     ) {
-        List<String> names = new ArrayList<>(count);
-
-        while (count-- != 0) {
-            var idx = random.nextInt(units.size());
-            var unit = units.remove(idx);
-            names.add(unit.name());
-        }
-
-        return new SolverResult(
-                location.locationName(),
-                names
-        );
+        return positions.stream()
+                .map(pos -> new SolverResult.SolverOurUnit(
+                        units.remove(random.nextInt(units.size())),
+                        pos)
+                ).toList();
     }
 
-    public List<SolverResult> spreadUnits(
-            Map<SolverLocation, Integer> locationsInfo,
-            List<Unit> units
+    public List<SolverResult.SolverLocation> spreadUnits(
+            Map<SolverInput.SolverLocation, List<Short>> locationsInfo,
+            List<SolverInput.SolverOurUnit> units
     ) {
-        return  locationsInfo
+        var names = units.stream()
+                .map(SolverInput.SolverOurUnit::name)
+                .collect(Collectors.toList());
+
+        return locationsInfo
                 .entrySet()
                 .stream()
-                .map(entry -> transformInfoToResult(
-                            entry.getKey(),
-                            entry.getValue(),
-                            units
-                    )
+                .map(entry -> new SolverResult.SolverLocation(
+                        entry.getKey().roundId(),
+                        entry.getKey().locationName(),
+                        transformInfoToResult(entry.getValue(), names))
                 )
                 .toList();
     }

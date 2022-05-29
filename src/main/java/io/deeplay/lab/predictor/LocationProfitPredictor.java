@@ -4,10 +4,17 @@ import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.PredictedLocation;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public interface LocationProfitPredictor {
-    public PredictedLocation predictLocation(Location location);
+public interface LocationProfitPredictor<T, R> {
 
-    public List<PredictedLocation> predictLocations(List<Location> locations);
+    R predictOn(T info);
+
+    default List<R> predictOnMultiple(List<T> infos) {
+        return infos
+                .stream()
+                .map(this::predictOn)
+                .collect(Collectors.toList());
+    }
 
 }

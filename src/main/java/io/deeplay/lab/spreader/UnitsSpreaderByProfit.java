@@ -1,6 +1,9 @@
 package io.deeplay.lab.spreader;
 
+import io.deeplay.lab.algorithm.Solver;
 import io.deeplay.lab.data.Location;
+import io.deeplay.lab.algorithm.Helper.Pair;
+import io.deeplay.lab.data.SolverInput.SolverLocation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UnitsSpreaderByProfit {
-     private class MutableDouble {
+     private static class MutableDouble {
           double value;
 
           public MutableDouble(double value) {
@@ -25,28 +28,28 @@ public class UnitsSpreaderByProfit {
           }
      }
 
-     private class TotalProfit {
-          Location location;
+     private static class TotalProfit {
+          SolverLocation location;
           List<MutableDouble> profits;
 
-          public TotalProfit(Map.Entry<Location, List<Double>> prediction) {
+          public TotalProfit(Map.Entry<SolverLocation, Pair<List<List<Short>>, List<Double>>> prediction) {
                location = prediction.getKey();
                var sum = new MutableDouble(0.0);
-               profits = prediction.getValue().stream()
+               profits = prediction.getValue().getRight().stream()
                        .map(sum::addAndGet)
                        .collect(Collectors.toCollection(ArrayList::new));
           }
      }
 
      private record ReduceResult (
-             Location location,
+             SolverLocation location,
              int unitsCount
      ) {
      }
 
 
      private List<TotalProfit> convertPredictionsToTotalProfits(
-             Map<Location, List<Double>> predictions
+             Map<SolverLocation, Pair<List<List<Short>>, List<Double>>> predictions
      ) {
           return predictions
              .entrySet()
@@ -107,10 +110,13 @@ public class UnitsSpreaderByProfit {
      }
 
 
-     public Map<Location, Integer> spreadUnits(Map<Location, List<Double>> predictions, int unitsCount) {
+     public Map<SolverLocation, List<Short>> spreadUnits(
+             Map<SolverLocation, Pair<List<List<Short>>, List<Double>>> predictions,
+             int unitsCount
+     ) {
           var totalProfits = convertPredictionsToTotalProfits(predictions);
 
-          Map<Location, Integer> unitCountsByLocation = new HashMap<>();
+          Map<SolverLocation, Integer> unitCountsByLocation = new HashMap<>();
 
           while (totalProfits.isEmpty() == false) {
                var result = reduceMostValuableTotalProfit(totalProfits, unitsCount);
@@ -120,6 +126,14 @@ public class UnitsSpreaderByProfit {
                                (k, v) -> (v != null ? v : 0) + result.unitsCount());
           }
 
-          return  unitCountsByLocation;
+          return unitCountsByLocation
+                  .entrySet()
+                  .parallelStream()
+                  .map(entry -> Pair.of(
+                          entry.getKey(),
+                          predictions.get(entry.getKey())
+                                  .getLeft()
+                                  .get(entry.getValue())))
+                  .collect(Pair.toMap());
      }
 }

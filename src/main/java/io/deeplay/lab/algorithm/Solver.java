@@ -4,5 +4,5 @@ import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.SolverResult;
 
 public interface Solver {
-    SolverResult[] solve(SolverInput input);
+    SolverResult solve(SolverInput input);
 }

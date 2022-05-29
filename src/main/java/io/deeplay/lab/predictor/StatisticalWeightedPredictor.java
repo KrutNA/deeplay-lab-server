@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class StatisticalWeightedPredictor implements LocationProfitPredictor {
+public class StatisticalWeightedPredictor implements LocationProfitPredictor<List<Short>, Double> {
     public final String statisticsWeightedTablePath = "src/main/resources/statistical_weighted_table.json";
     private StatisticalWeightedTable tableWeighted;
 
@@ -23,16 +23,11 @@ public class StatisticalWeightedPredictor implements LocationProfitPredictor {
         this.tableWeighted = mapper.readValue(parser, StatisticalWeightedTable.class);
         System.out.println(tableWeighted.tableWeighted());
     }
-    @Override
-    public PredictedLocation predictLocation(Location location) {
-
-        return null;
-    }
 
     @Override
-    public List<PredictedLocation> predictLocations(List<Location> locations) {
-        return null;
+    public Double predictOn(List<Short> info) {
 
+        return null;
     }
 
 }
