@@ -2,7 +2,7 @@ package io.deeplay.lab.db;
 
 import io.deeplay.lab.data.Round;
 import io.deeplay.lab.data.Team;
-import io.deeplay.lab.data.Unit;
+import io.deeplay.lab.data.UnitHistory;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -316,7 +316,7 @@ public class SqlDatabase implements Database {
     final var sep = ",\n";
     final var footer = "\nON CONFLICT DO NOTHING";
 
-    Function<Function<Round, List<Unit>>, List<Unit>> extractUnits = (function) -> rounds.stream()
+    Function<Function<Round, List<UnitHistory>>, List<UnitHistory>> extractUnits = (function) -> rounds.stream()
           .flatMap(round -> function.apply(round).stream())
           .distinct()
           .toList();
@@ -329,7 +329,7 @@ public class SqlDatabase implements Database {
 
     final var i = new AtomicInteger();
     PrepareStatementProcessor processor = (st) -> {
-      SqlBiConsumer<List<Unit>, Team> processUnits = (units, team) -> {
+      SqlBiConsumer<List<UnitHistory>, Team> processUnits = (units, team) -> {
         final var teamId = team.toInner();
         for (final var unit : units) {
           st.setString(i.incrementAndGet(), unit.name());
@@ -369,7 +369,7 @@ public class SqlDatabase implements Database {
                     ON data.round_uuid = rounds.round_id
             ON CONFLICT DO NOTHING""";
 
-    final List<Function<Round, List<Unit>>> extractUnits
+    final List<Function<Round, List<UnitHistory>>> extractUnits
             = List.of(Round::ourUnits, Round::opponentUnits);
     final var it = new AtomicInteger();
 
@@ -430,11 +430,11 @@ public class SqlDatabase implements Database {
 
   @FunctionalInterface
   interface UnitsTeamProcessor {
-    void process(List<Unit> unit, Team team) throws SQLException;
+    void process(List<UnitHistory> unit, Team team) throws SQLException;
   }
   @FunctionalInterface
   interface UnitsProcessor {
-    void process(List<Unit> unit) throws SQLException;
+    void process(List<UnitHistory> unit) throws SQLException;
   }
 
   @FunctionalInterface
