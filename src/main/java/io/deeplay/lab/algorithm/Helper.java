@@ -44,7 +44,7 @@ public class Helper {
                 .filter(pos -> !enemyPositions.contains(pos))
                 .toList();
 
-        return IntStream.range(1, availablePositions.size())
+        return IntStream.range(1, availablePositions.size() + 1)
                 .mapToObj(count -> availablePositions.stream().limit(count).toList())
                 .toList();
     }
