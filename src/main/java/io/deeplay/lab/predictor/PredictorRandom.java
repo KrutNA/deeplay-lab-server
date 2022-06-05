@@ -12,7 +12,7 @@ public class PredictorRandom implements LocationProfitPredictor<SolverInput.Solv
     final Random random = new Random();
 
     @Override
-    public Double predictOn(SolverInput.SolverLocation location) {
+    public Double predictOn(SolverInput.SolverLocation location, SolverInput.SolverLocation _location) {
         return randomPrediction();
 
     }

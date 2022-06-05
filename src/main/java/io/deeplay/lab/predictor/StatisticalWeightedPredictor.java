@@ -3,6 +3,7 @@ package io.deeplay.lab.predictor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.PredictedLocation;
+import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.StatisticalWeightedTable;
 
 import java.io.FileInputStream;
@@ -25,7 +26,7 @@ public class StatisticalWeightedPredictor implements LocationProfitPredictor<Lis
     }
 
     @Override
-    public Double predictOn(List<Short> info) {
+    public Double predictOn(SolverInput.SolverLocation location, List<Short> info) {
 
         return null;
     }

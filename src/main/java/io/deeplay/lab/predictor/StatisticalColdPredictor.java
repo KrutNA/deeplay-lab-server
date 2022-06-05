@@ -3,12 +3,12 @@ package io.deeplay.lab.predictor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.deeplay.lab.data.Location;
 import io.deeplay.lab.data.PredictedLocation;
+import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.StatisticalTable;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,9 +27,10 @@ public class StatisticalColdPredictor implements LocationProfitPredictor<List<Sh
     }
 
     @Override
-    public Double predictOn(List<Short> info) {
+    public Double predictOn(SolverInput.SolverLocation location, List<Short> info) {
         double sum = 0.0;
-        var tableElement = table.table().get((short) info.size());
+        var tableElement = table.table()
+                .get((short) (location.opponentUnits().size() + info.size()));
         for (var pos : info) {
             sum += tableElement.get(pos);
         }

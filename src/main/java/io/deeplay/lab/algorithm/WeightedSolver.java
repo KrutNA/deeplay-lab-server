@@ -28,8 +28,10 @@ public class WeightedSolver implements Solver {
                         Helper.findPossibleCases(location)))
                 .map(pair_loc_cases -> Pair.of(
                         pair_loc_cases.getLeft(),
-                        Pair.of(pair_loc_cases.getRight(),
-                                predictor.predictOnMultiple(pair_loc_cases.getRight()))))
+                        Pair.of(pair_loc_cases.getRight(),  
+                                predictor.predictOnMultiple(
+                                        pair_loc_cases.getLeft(),
+                                        pair_loc_cases.getRight()))))
                 .collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
 
         var spreads = spreaderByProfit.spreadUnits(predictions, input.ourUnits().size());
