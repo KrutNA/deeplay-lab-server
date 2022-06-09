@@ -15,7 +15,7 @@ public class WeightedSolver implements Solver {
     UnitsSpreaderByProfit spreaderByProfit = new UnitsSpreaderByProfit();
     UnitsSpreaderByCount spreaderByCount = new UnitsSpreaderByCount();
 
-    WeightedSolver(LocationProfitPredictor<List<Short>, Double> predictor) {
+    public WeightedSolver(LocationProfitPredictor<List<Short>, Double> predictor) {
         this.predictor = predictor;
     }
 

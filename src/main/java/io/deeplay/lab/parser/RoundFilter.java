@@ -2,6 +2,7 @@ package io.deeplay.lab.parser;
 
 import io.deeplay.lab.data.Round;
 import io.deeplay.lab.data.Unit;
+import io.deeplay.lab.data.UnitHistory;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -39,7 +40,7 @@ public class RoundFilter implements Predicate<Round> {
 
         var uniquePositionsCount = new AtomicInteger();
         var positions = extractUnits(round)
-                .mapToInt(Unit::locatePosition)
+                .mapToInt(UnitHistory::locatePosition)
                 .distinct()
                 .peek((pos) -> uniquePositionsCount.incrementAndGet());
 
@@ -52,12 +53,12 @@ public class RoundFilter implements Predicate<Round> {
     public static  boolean checkTotalSum(Round round) {
         final double epsilon = 1e-3;
         var totalSum = extractUnits(round)
-                .mapToDouble(Unit::goldProfit)
+                .mapToDouble(UnitHistory::goldProfit)
                 .sum();
         return Math.abs(totalSum) < epsilon;
     }
 
-    private static Stream<Unit> extractUnits(Round round) {
+    private static Stream<UnitHistory> extractUnits(Round round) {
         return Stream.concat(
                 round.ourUnits().stream(),
                 round.opponentUnits().stream()

@@ -1,7 +1,7 @@
 package io.deeplay.lab.parser;
 
 import io.deeplay.lab.data.Round;
-import io.deeplay.lab.data.Unit;
+import io.deeplay.lab.data.UnitHistory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,24 +17,24 @@ class HistoricalDataParserTest {
     private List<Round> roundExpected = new ArrayList<>();
     private List<Round> roundActual = new ArrayList<>();
     private UUID id;
-    private List<Unit> opponentUnits = new ArrayList<>();
-    private List<Unit> ourUnits = new ArrayList<>();
+    private List<UnitHistory> opponentUnits = new ArrayList<>();
+    private List<UnitHistory> ourUnits = new ArrayList<>();
 
     @Test
     void name() throws Exception {
-        opponentUnits.add(new Unit
+        opponentUnits.add(new UnitHistory
                 ("name1", (float) 132.8, (float) 0.0, (short) 1, (short) 0, (short) 0, (short) 0, (short) 0));
-        opponentUnits.add(new Unit
+        opponentUnits.add(new UnitHistory
                 ("name2", (float) 191.6, (float) 0.0, (short) 2, (short) 0, (short) 0, (short) 0, (short) 0));
-        opponentUnits.add(new Unit
+        opponentUnits.add(new UnitHistory
                 ("name3", (float) 100.0, (float) 1.5, (short) 3, (short) 1, (short) 1, (short) 0, (short) 0));
-        opponentUnits.add(new Unit
+        opponentUnits.add(new UnitHistory
                 ("name4", (float) 100.0, (float) 0.0, (short) 4, (short) 0, (short) 0, (short) 0, (short) 0));
 
 
-        ourUnits.add(new Unit
+        ourUnits.add(new UnitHistory
                 ("name5", (float) 100.0, (float) -1.0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0));
-        ourUnits.add(new Unit
+        ourUnits.add(new UnitHistory
                 ("name6", (float) 115.5, (float) -0.5, (short) 5, (short) 0, (short) 0, (short) 0, (short) 0));
 
         id = UUID.fromString("aaa72c29-a55a-4a24-9a1c-94e8a9d24eda");
