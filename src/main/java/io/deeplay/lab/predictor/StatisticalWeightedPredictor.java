@@ -15,7 +15,7 @@ public class StatisticalWeightedPredictor implements LocationProfitPredictor<Lis
     public final String statisticsWeightedTablePath = "src/main/resources/statistical_weighted_table.json";
     private StatisticalWeightedTable tableWeighted;
 
-    StatisticalWeightedPredictor() throws IOException {
+    public StatisticalWeightedPredictor() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new FileInputStream(statisticsWeightedTablePath);

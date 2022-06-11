@@ -16,7 +16,7 @@ public class StatisticalColdPredictor implements LocationProfitPredictor<List<Sh
     public final String statisticsTablePath = "src/main/resources/statistical_table.json";
     private StatisticalTable table;
 
-    StatisticalColdPredictor() throws IOException {
+    public StatisticalColdPredictor() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new FileInputStream(statisticsTablePath);

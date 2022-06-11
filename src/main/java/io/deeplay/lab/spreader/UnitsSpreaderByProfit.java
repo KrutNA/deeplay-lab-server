@@ -20,7 +20,7 @@ public class UnitsSpreaderByProfit {
         }
 
         public MutableDouble addAndGet(double value) {
-            return new MutableDouble(this.value += value);
+            return new MutableDouble(this.value = value);
         }
 
         public void sub(double value) {
