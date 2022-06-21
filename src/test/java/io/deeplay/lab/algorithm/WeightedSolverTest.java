@@ -1,6 +1,5 @@
-package io.deeplay.lab.algoryihms;
+package io.deeplay.lab.algorithm;
 
-import io.deeplay.lab.algorithm.WeightedSolver;
 import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.SolverResult;
 import io.deeplay.lab.predictor.StatisticalColdPredictor;

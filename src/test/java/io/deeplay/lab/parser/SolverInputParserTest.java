@@ -1,13 +1,11 @@
-package io.deeplay.lab.algoryihms;
+package io.deeplay.lab.parser;
 
-import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.SolverInput.SolverOurUnit;
 import io.deeplay.lab.parser.SolverInputParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.postgresql.util.ReaderInputStream;
 
-import java.io.InputStream;
 import java.io.StringReader;
 
 public class SolverInputParserTest {

@@ -1,6 +1,5 @@
-package io.deeplay.lab.algoryihms;
+package io.deeplay.lab.algorithm;
 
-import io.deeplay.lab.algorithm.Helper;
 import io.deeplay.lab.data.SolverInput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
