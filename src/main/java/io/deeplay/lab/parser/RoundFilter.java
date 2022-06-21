@@ -1,7 +1,6 @@
 package io.deeplay.lab.parser;
 
 import io.deeplay.lab.data.Round;
-import io.deeplay.lab.data.Unit;
 import io.deeplay.lab.data.UnitHistory;
 
 import java.util.List;
