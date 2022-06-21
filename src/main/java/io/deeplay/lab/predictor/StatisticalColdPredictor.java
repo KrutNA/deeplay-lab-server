@@ -15,13 +15,11 @@ public class StatisticalColdPredictor implements LocationProfitPredictor<List<Sh
     private StatisticalTable table;
 
     public StatisticalColdPredictor() throws IOException {
-
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new FileInputStream(statisticsTablePath);
         var parser = mapper.getFactory().createParser(is);
 
         this.table = mapper.readValue(parser, StatisticalTable.class);
-
     }
 
     @Override

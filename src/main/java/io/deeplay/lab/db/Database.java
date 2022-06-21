@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Database extends Closeable {
-  int chunkSize = 500;
+  int CHUNK_SIZE = 500;
 
   Optional<Long> getOrInsertLocationAsId(final String location);
 

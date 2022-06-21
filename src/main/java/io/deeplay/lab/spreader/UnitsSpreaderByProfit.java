@@ -17,10 +17,6 @@ public class UnitsSpreaderByProfit {
             this.value = value;
         }
 
-        public MutableDouble addAndGet(double value) {
-            return new MutableDouble(this.value = value);
-        }
-
         public void sub(double value) {
             this.value -= value;
         }
@@ -32,9 +28,8 @@ public class UnitsSpreaderByProfit {
 
         public TotalProfit(Map.Entry<SolverLocation, Pair<List<List<Short>>, List<Double>>> prediction) {
             location = prediction.getKey();
-            var sum = new MutableDouble(0.0);
             profits = prediction.getValue().getRight().stream()
-                    .map(sum::addAndGet)
+                    .map(MutableDouble::new)
                     .collect(Collectors.toCollection(ArrayList::new));
         }
     }

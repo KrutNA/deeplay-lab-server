@@ -9,14 +9,7 @@ public class PredictorRandom implements LocationProfitPredictor<SolverInput.Solv
 
     @Override
     public Double predictOn(SolverInput.SolverLocation location, SolverInput.SolverLocation _location) {
-        return randomPrediction();
-
-    }
-
-    private double randomPrediction() {
-
         return random.nextGaussian(0, 2);
     }
-
 }
 

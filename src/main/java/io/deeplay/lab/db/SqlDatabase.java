@@ -40,7 +40,7 @@ public class SqlDatabase implements Database {
   public SqlDatabase(String url, String user, String pass) {
     connection = initializeConnection(url, user, pass);
     logger = Logger.getLogger(SqlDatabase.class.getName());
-    logger.log(Level.INFO, "Connection established.");
+    logger.info("Connection established.");
   }
 
   private Optional<Long> processQueryByStatementWithResultId(

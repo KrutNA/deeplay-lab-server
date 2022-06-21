@@ -25,7 +25,6 @@ public class StatisticalWeightedPredictor implements LocationProfitPredictor<Lis
 
     @Override
     public Double predictOn(SolverInput.SolverLocation location, List<Short> info) {
-
         return null;
     }
 
