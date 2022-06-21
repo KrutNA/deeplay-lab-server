@@ -1,7 +1,5 @@
 package io.deeplay.lab.spreader;
 
-import io.deeplay.lab.algorithm.Solver;
-import io.deeplay.lab.data.Location;
 import io.deeplay.lab.algorithm.Helper.Pair;
 import io.deeplay.lab.data.SolverInput.SolverLocation;
 

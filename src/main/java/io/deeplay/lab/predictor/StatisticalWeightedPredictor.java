@@ -1,8 +1,6 @@
 package io.deeplay.lab.predictor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.deeplay.lab.data.Location;
-import io.deeplay.lab.data.PredictedLocation;
 import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.StatisticalWeightedTable;
 

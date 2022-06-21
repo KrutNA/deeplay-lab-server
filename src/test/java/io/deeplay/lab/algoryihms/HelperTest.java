@@ -1,32 +1,15 @@
 package io.deeplay.lab.algoryihms;
 
 import io.deeplay.lab.algorithm.Helper;
-import io.deeplay.lab.data.Location;
-import io.deeplay.lab.data.ReduceLocation;
 import io.deeplay.lab.data.SolverInput;
-import io.deeplay.lab.data.Unit;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 class HelperTest {
-    private ReduceLocation firstLocation;
-    private ReduceLocation secondLocation;
-    private ReduceLocation thirdLocation;
-    private ReduceLocation fourthLocation;
-
-    private Unit opponentUnit;
-    private Unit ourUnit;
-
-
-    private Map<Integer, Unit> opponentsUnit;
 
     @Test
     public void testFindPossibleCases() {
@@ -229,112 +212,4 @@ class HelperTest {
 
         Assertions.assertEquals(expectedLocations, actual);
     }
-
-    @Test
-    public void testConverterOurCase() {
-        opponentUnit = new Unit(1, "");
-        ourUnit = new Unit(0, null);
-        opponentsUnit = new HashMap<>();
-
-        opponentsUnit.put(0, opponentUnit);
-        opponentsUnit.put(1, opponentUnit);
-        opponentsUnit.put(2, opponentUnit);
-
-        firstLocation = new ReduceLocation(1, (short) 6, opponentsUnit);
-
-        secondLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsSecondLocation = new HashMap<>();
-        ourUnitsSecondLocation.put(3, ourUnit);
-        secondLocation.setOurUnits(ourUnitsSecondLocation);
-
-        thirdLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsThirdLocation = new HashMap<>();
-        ourUnitsThirdLocation.put(3, ourUnit);
-        ourUnitsThirdLocation.put(4, ourUnit);
-        thirdLocation.setOurUnits(ourUnitsThirdLocation);
-
-        fourthLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsFourthLocation = new HashMap<>();
-        ourUnitsFourthLocation.put(3, ourUnit);
-        ourUnitsFourthLocation.put(4, ourUnit);
-        ourUnitsFourthLocation.put(5, ourUnit);
-        fourthLocation.setOurUnits(ourUnitsFourthLocation);
-
-        List<Location> expectedLocations = Helper.converterOurCase(firstLocation);
-
-        ArrayList<Location> actual = new ArrayList<>();
-        actual.add(firstLocation);
-        actual.add(secondLocation);
-        actual.add(thirdLocation);
-        actual.add(fourthLocation);
-
-        Assertions.assertEquals(expectedLocations, actual);
-    }
-
-    @Test
-    //Если рассадка опонентов непоследовательная
-    public void testConverterOurCaseWhenNotSequentialSeating() {
-        opponentUnit = new Unit(1, "");
-        ourUnit = new Unit(0, null);
-        opponentsUnit = new HashMap<>();
-
-        opponentsUnit.put(0, opponentUnit);
-        opponentsUnit.put(1, opponentUnit);
-        opponentsUnit.put(3, opponentUnit);
-
-        firstLocation = new ReduceLocation(1, (short) 6, opponentsUnit);
-
-        secondLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsSecondLocation = new HashMap<>();
-        ourUnitsSecondLocation.put(2, ourUnit);
-        secondLocation.setOurUnits(ourUnitsSecondLocation);
-
-        thirdLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsThirdLocation = new HashMap<>();
-        ourUnitsThirdLocation.put(2, ourUnit);
-        ourUnitsThirdLocation.put(4, ourUnit);
-        thirdLocation.setOurUnits(ourUnitsThirdLocation);
-
-        fourthLocation = firstLocation.clone();
-        Map<Integer, Unit> ourUnitsFourthLocation = new HashMap<>();
-        ourUnitsFourthLocation.put(2, ourUnit);
-        ourUnitsFourthLocation.put(4, ourUnit);
-        ourUnitsFourthLocation.put(5, ourUnit);
-        fourthLocation.setOurUnits(ourUnitsFourthLocation);
-
-        List<Location> expectedLocations = Helper.converterOurCase(firstLocation);
-
-        ArrayList<Location> actual = new ArrayList<>();
-        actual.add(firstLocation);
-        actual.add(secondLocation);
-        actual.add(thirdLocation);
-        actual.add(fourthLocation);
-
-        Assertions.assertEquals(expectedLocations, actual);
-    }
-
-    @Test
-    // Если все места заняты опонентами
-    public void testConverterOurCaseWhenNoPlaceForSeating() {
-        opponentUnit = new Unit(1, "");
-        ourUnit = new Unit(0, null);
-        opponentsUnit = new HashMap<>();
-
-        opponentsUnit.put(0, opponentUnit);
-        opponentsUnit.put(1, opponentUnit);
-        opponentsUnit.put(2, opponentUnit);
-        opponentsUnit.put(3, opponentUnit);
-        opponentsUnit.put(4, opponentUnit);
-        opponentsUnit.put(5, opponentUnit);
-
-        firstLocation = new ReduceLocation(1, (short) 6, opponentsUnit);
-
-        List<Location> expectedLocations = Helper.converterOurCase(firstLocation);
-
-        ArrayList<Location> actual = new ArrayList<>();
-        actual.add(firstLocation);
-
-        Assertions.assertEquals(expectedLocations, actual);
-    }
-
 }

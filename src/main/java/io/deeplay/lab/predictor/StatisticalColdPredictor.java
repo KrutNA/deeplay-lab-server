@@ -1,8 +1,6 @@
 package io.deeplay.lab.predictor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.deeplay.lab.data.Location;
-import io.deeplay.lab.data.PredictedLocation;
 import io.deeplay.lab.data.SolverInput;
 import io.deeplay.lab.data.StatisticalTable;
 
@@ -35,14 +33,5 @@ public class StatisticalColdPredictor implements LocationProfitPredictor<List<Sh
             sum += tableElement.get(pos);
         }
         return sum;
-    }
-
-    @Deprecated
-    public PredictedLocation predictLocation(Location location) {
-        double sum = 0;
-        for (var pos : location.getOurUnits().keySet()) {
-            sum += table.table().get(location.getUnitCount()).get(pos);
-        }
-        return new PredictedLocation(location.getId(), sum);
     }
 }
